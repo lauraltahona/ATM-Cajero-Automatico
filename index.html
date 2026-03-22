@@ -1,39 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cajero</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
     <div class="atm">
+        <div class="atm-text">A · T · M</div>
+
         <div class="pantalla">
-        Ingresa una opción
+
+            <!-- MENÚ PRINCIPAL -->
+            <div class="vista activa" id="vista-menu">
+                <div class="titulo">SELECCIONE EL TIPO DE RETIRO</div>
+
+                <div class="menu">
+                    <button data-vista="vista-nequi-num"">01 - RETIRO NEQUI</button>
+                    <button data-vista="vista-ahorro-num">02 - AHORRO A LA MANO</button>
+                    <button data-vista="vista-cuenta-num">03 - CUENTA DE AHORROS</button>
+                </div>
+            </div>
+
+            <!-- NEQUI - NÚMERO -->
+            <div class="vista" id="vista-nequi-num">
+                <div class="titulo">RETIRO NEQUI</div>
+                <p>Ingrese número de celular (10 dígitos)</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-numero"></div>
+                    <div class="error" id="error-numero"></div>
+                </div>
+
+                <button data-vista="vista-menu">⬅ Volver</button>
+                <button data-vista="vista-nequi-clave">Continuar</button>
+            </div>
+
+            <!-- NEQUI - CLAVE -->
+            <div class="vista" id="vista-nequi-clave">
+                <div class="titulo">CLAVE TEMPORAL</div>
+                <p>Ingrese la clave de 6 dígitos</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-clave"></div>
+                    <div class="error" id="error-clave"></div>
+                </div>
+
+                <button data-vista="vista-menu">Cancelar</button>
+            </div>
+
+            <!-- AHORRO - NÚMERO -->
+            <div class="vista" id="vista-ahorro-num">
+                <div class="titulo">AHORRO A LA MANO</div>
+                <p>Ingrese número (11 dígitos)</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-ahorro-num"></div>
+                    <div class="error" id="error-ahorro-num"></div>
+                </div>
+
+                <button data-vista="vista-menu">⬅ Volver</button>
+                <button data-vista="vista-ahorro-pin">Continuar</button>
+            </div>
+
+            <!-- AHORRO - CLAVE -->
+            <div class="vista" id="vista-ahorro-pin">
+                <div class="titulo">CLAVE</div>
+                <p>Ingrese su clave (4 dígitos)</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-ahorro-clave"></div>
+                    <div class="error" id="error-ahorro-clave"></div>
+                </div>
+
+                <button data-vista="vista-menu">Cancelar</button>
+            </div>
+
+            <!-- CUENTA - NÚMERO -->
+            <div class="vista" id="vista-cuenta-num">
+                <div class="titulo">CUENTA DE AHORROS</div>
+                <p>Ingrese número de cuenta (11 dígitos)</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-cuenta-num"></div>
+                    <div class="error" id="error-cuenta-num"></div>
+                </div>
+
+                <button data-vista="vista-menu">⬅ Volver</button>
+                <button data-vista="vista-cuenta-pin">Continuar</button>
+            </div>
+
+            <!-- CUENTA - CLAVE -->
+            <div class="vista" id="vista-cuenta-pin">
+                <div class="titulo">CLAVE</div>
+                <p>Ingrese su clave (4 dígitos)</p>
+
+                <div class="grupo-input">
+                    <div class="display" id="display-cuenta-clave"></div>
+                    <div class="error" id="error-cuenta-clave"></div>
+                </div>
+
+                <button data-vista="vista-menu">Cancelar</button>
+            </div>
+            <div class="vista" id="vista-monto">
+                <div class="titulo">SELECCIONE MONTO</div>
+
+                <div class="montos">
+                    <button data-monto="10000">$10.000</button>
+                    <button data-monto="20000">$20.000</button>
+                    <button data-monto="50000">$50.000</button>
+                    <button data-monto="100000">$100.000</button>
+                </div>
+
+                <button id="btn-otro">Otro valor</button>
+
+                <div id="otro-monto" style="display:none;">
+                    <div class="display" id="display-monto"></div>
+                    <div class="error" id="error-monto"></div>
+                </div>
+
+                <button data-vista="vista-menu">Cancelar</button>
+            </div>
+
+            <!-- COMPROBANTE -->
+            <div class="vista" id="vista-comprobante">
+
+                <div class="titulo">COMPROBANTE</div>
+
+                <div class="recibo">
+                    <div class="monto" id="recibo-monto"></div>
+
+                    <div class="fila">
+                        <span>TIPO:</span>
+                        <span id="recibo-tipo"></span>
+                    </div>
+
+                    <div class="fila">
+                        <span>NÚMERO:</span>
+                        <span id="recibo-numero"></span>
+                    </div>
+
+                    <div class="fila">
+                        <span>HORA:</span>
+                        <span id="recibo-hora"></span>
+                    </div>
+
+                    <div class="billetes" id="recibo-billetes"></div>
+                </div>
+
+                <button data-vista="vista-prediccion">
+                    Ver predicción →
+                </button>
+
+            </div>
+        </div>
+
+        <div class="numeros-teclado">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+
+            <button></button>
+            <button>0</button>
+            <button></button>
+
+            <button id="amarillo">←</button>
+            <button data-vista="vista-menu" id="rojo">x</button>
+            <button id="verde">✓</button>
+        </div>
+        <div class="ranura-dinero"></div>
     </div>
 
-    <div class="numeros-teclado">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-
-        <button></button>
-        <button>0</button>
-        <button></button> 
-
-        <button id="amarillo">←</button>
-        <button id="rojo">x</button>
-        <button id="verde">✓</button>
-    </div>
-    <div class="ranura-dinero"></div>
-    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>
