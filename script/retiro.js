@@ -1,16 +1,14 @@
 
+export function retiroDinero(valor){
 
-let dinero = [10000, 20000, 50000, 100000]
-let total = 0
-
-function retiroDinero(valor){
-
+    let dinero = [10000, 20000, 50000, 100000]
+    let total = 0
     let retiro = []
     let carry = 0
 
     while (total !== valor){
 
-        for(i=carry; i < dinero.length; i++){
+        for(let i=carry; i < dinero.length; i++){
 
             if(dinero[i] + total <= valor){
                 total += dinero[i]
@@ -26,9 +24,6 @@ function retiroDinero(valor){
     
 }
 
-retiroTotal = retiroDinero(990000)
 
-console.log(retiroTotal);
-console.log("total: "+ total);
 
 

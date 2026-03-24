@@ -21,7 +21,7 @@
 
                 <div class="menu">
                     <button data-vista="vista-nequi-num"">01 - RETIRO NEQUI</button>
-                    <button data-vista="vista-ahorro-num">02 - AHORRO A LA MANO</button>
+                    <button data-vista=" vista-ahorro-num">02 - AHORRO A LA MANO</button>
                     <button data-vista="vista-cuenta-num">03 - CUENTA DE AHORROS</button>
                 </div>
             </div>
@@ -37,13 +37,17 @@
                 </div>
 
                 <button data-vista="vista-menu">⬅ Volver</button>
-                <button data-vista="vista-nequi-clave">Continuar</button>
+                <p style="color: rgb(5, 211, 5);">PULSE BOTÓN VERDE PARA CONTINUAR</p>
+                <p style="color: rgba(255, 255, 0, 0.834);">PULSE BOTÓN AMARILLO PARA DEVOLVER EL DIGITO</p>
+                <p style="color: rgba(255, 0, 0, 0.773);">PULSE BOTÓN ROJO PARA CANCELAR</p>
             </div>
 
             <!-- NEQUI - CLAVE -->
             <div class="vista" id="vista-nequi-clave">
                 <div class="titulo">CLAVE TEMPORAL</div>
                 <p>Ingrese la clave de 6 dígitos</p>
+                <div id="clave-generada"></div>
+                <p id="tiempo-clave"></p>
 
                 <div class="grupo-input">
                     <div class="display" id="display-clave"></div>
@@ -64,7 +68,9 @@
                 </div>
 
                 <button data-vista="vista-menu">⬅ Volver</button>
-                <button data-vista="vista-ahorro-pin">Continuar</button>
+                <p style="color: rgb(5, 211, 5);">PULSE BOTÓN VERDE PARA CONTINUAR</p>
+                <p style="color: rgba(255, 255, 0, 0.834);">PULSE BOTÓN AMARILLO PARA DEVOLVER EL DIGITO</p>
+                <p style="color: rgba(255, 0, 0, 0.773);">PULSE BOTÓN ROJO PARA CANCELAR</p>
             </div>
 
             <!-- AHORRO - CLAVE -->
@@ -73,7 +79,7 @@
                 <p>Ingrese su clave (4 dígitos)</p>
 
                 <div class="grupo-input">
-                    <div class="display" id="display-ahorro-clave"></div>
+                    <div class="display oculto" id="display-ahorro-clave"></div>
                     <div class="error" id="error-ahorro-clave"></div>
                 </div>
 
@@ -91,7 +97,9 @@
                 </div>
 
                 <button data-vista="vista-menu">⬅ Volver</button>
-                <button data-vista="vista-cuenta-pin">Continuar</button>
+                <p style="color: rgb(5, 211, 5);">PULSE BOTÓN VERDE PARA CONTINUAR</p>
+                <p style="color: rgba(255, 255, 0, 0.834);">PULSE BOTÓN AMARILLO PARA DEVOLVER EL DIGITO</p>
+                <p style="color: rgba(255, 0, 0, 0.773);">PULSE BOTÓN ROJO PARA CANCELAR</p>
             </div>
 
             <!-- CUENTA - CLAVE -->
@@ -100,7 +108,7 @@
                 <p>Ingrese su clave (4 dígitos)</p>
 
                 <div class="grupo-input">
-                    <div class="display" id="display-cuenta-clave"></div>
+                    <div class="display oculto" id="display-cuenta-clave"></div>
                     <div class="error" id="error-cuenta-clave"></div>
                 </div>
 
@@ -151,11 +159,12 @@
 
                     <div class="billetes" id="recibo-billetes"></div>
                 </div>
+            </div>
 
-                <button data-vista="vista-prediccion">
-                    Ver predicción →
-                </button>
-
+            <div class="vista" id="vista-prediccion">
+                <div class="titulo">PREDICCIÓN DE BILLETES</div>
+                <div id="prediccion-billetes"></div>
+                <button data-vista="vista-menu">Volver</button>
             </div>
         </div>
 
@@ -183,7 +192,9 @@
         <div class="ranura-dinero"></div>
     </div>
 
-    <script src="script.js"></script>
+    <button data-vista="vista-prediccion" id="btn-prediccion">Ver predicción</button>
+
+    <script type="module" src="./script/script.js"></script>
 </body>
 
 </html>

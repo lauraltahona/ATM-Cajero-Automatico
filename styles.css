@@ -28,16 +28,6 @@ body{
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
-.pantalla{
-    background:#8fd3e8;
-    height:210px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border: 7px solid #3c3f46;
-    margin:20px 20px;
-    position: relative;
-}
 
 .numeros-teclado{
     height:150px;
@@ -90,4 +80,227 @@ body{
     border: 1px #302c2c solid;
     padding: 5px;
     min-height: 10px;
+}
+
+
+.ranura-dinero {
+    width: 100px;
+    height: 10px;
+    background: black;
+    margin: 10px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.billete-animado {
+    width: 80px;
+    height: 40px;
+    background: green;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    animation: salir 0.5s ease forwards;
+}
+
+@keyframes salir {
+    to {
+        top: 20px;
+        opacity: 0;
+    }
+}
+
+/* ── PANTALLA ── */
+.pantalla {
+    background: #061108;
+    border: 7px solid #3c3f46;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    height: 210px;
+}
+
+/* scanline animado */
+.pantalla::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,136,0.2), transparent);
+    animation: scan 5s linear infinite;
+    z-index: 10;
+    pointer-events: none;
+}
+@keyframes scan { 0%{top:0} 100%{top:100%} }
+
+/* ── VISTAS ── */
+.vista {
+    display: none;
+    padding: 12px;
+    height: 100%;
+    flex-direction: column;
+    font-family: 'Share Tech Mono', monospace;
+    color: #00ff88;
+    font-size: 11px;
+}
+.vista.activa { display: flex; }
+
+.titulo {
+    font-size: 9px;
+    color: #00994d;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #0d2a1a;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+}
+
+.vista p {
+    font-size: 9px;
+    color: #4a7a6a;
+    margin-bottom: 8px;
+    margin: 5px;
+}
+
+/* ── MENÚ ── */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.menu button {
+    background: rgba(0,255,136,0.04);
+    border: 1px solid #1a3a2a;
+    color: #00ff88;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+}
+.menu button:hover { background: rgba(0,255,136,0.12); border-color: #00994d; }
+
+/* ── DISPLAY INPUT ── */
+.display {
+    background: rgba(0,255,136,0.04);
+    border: 1px solid #1a3a2a;
+    border-radius: 4px;
+    color: #00ff88;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    padding: 4px 10px;
+    letter-spacing: 3px;
+    min-height: 28px;
+}
+
+.error {
+    color: #ff4060;
+    font-size: 10px;
+    margin-top: 4px;
+    min-height: 10px;
+    letter-spacing: 1px;
+}
+
+/* ── BOTONES DENTRO DE LA PANTALLA ── */
+.vista > button {
+    background: rgba(0,255,136,0.06);
+    border: 1px solid #1a4a2a;
+    color: #00ff88;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+}
+.vista > button:hover { background: rgba(0,255,136,0.14); }
+
+/* ── CLAVE TEMPORAL ── */
+#clave-generada {
+    font-size: 20px;
+    color: #ffb800;
+    letter-spacing: 8px;
+    text-align: center;
+    padding: 6px 0;
+    text-shadow: 0 0 12px rgba(255,184,0,0.4);
+}
+#tiempo-clave {
+    font-size: 10px;
+    color: #6a6040;
+    text-align: center;
+    margin-bottom: 6px !important;
+}
+
+/* ── MONTOS ── */
+.montos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+.montos button {
+    background: rgba(0,212,170,0.05);
+    border: 1px solid #1a3040;
+    color: #00d4aa;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    padding: 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.montos button:hover { background: rgba(0,212,170,0.15); border-color: #00d4aa; }
+
+/* ── COMPROBANTE ── */
+.recibo {
+    border: 1px dashed #1a3a2a;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 9px;
+    flex: 1;
+    overflow-y: auto;
+}
+.monto {
+    text-align: center;
+    font-size: 18px;
+    color: #00d4aa;
+    padding: 4px 0 6px;
+    letter-spacing: 2px;
+}
+.fila {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #0d2a1a;
+    padding: 2px 0;
+    color: #4a7a6a;
+}
+.fila span:last-child { color: #00ff88; }
+
+.billetes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-top: 6px;
+}
+
+.oculto{
+    -webkit-text-security: disc;
+}
+
+#p-yellow{
+    color: yellow;
+}
+
+#btn-prediccion{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #00ff88;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #061108;
+    padding: 6px;
 }
